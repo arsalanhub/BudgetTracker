@@ -9,7 +9,7 @@ function App() {
     { id: "e4", title: "Juice", amount: 30, date: new Date(2022, 4, 14) },
   ];
   return (
-    <div className="expenses">
+    <div>
       <Expenses item={expenses}/>
     </div>
   );
