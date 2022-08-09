@@ -6,9 +6,9 @@ import "./ExpenseItem.css";
 const ExpenseItem = (props) => {
   const [title, setTitle] = useState(props.title);
   const clickedHandler = () => {
-    setTitle('Updated' + title)
-    console.log(title)
-  }
+    setTitle("Updated" + title);
+    console.log(title);
+  };
   return (
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
