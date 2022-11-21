@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BudgetDashboard from "./pages/BudgetDashboard";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/dashboard" element={<BudgetDashboard />}></Route>
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
     </BrowserRouter>
   );
