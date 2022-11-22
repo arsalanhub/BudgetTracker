@@ -1,6 +1,7 @@
 const User = require("./model/userModel");
 const Expenses = require("./model/ExpenseModel");
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
 
 module.exports.register = async (req, res, next) => {
   try {
@@ -57,5 +58,25 @@ module.exports.AddExpense = async (req, res, next) => {
     else return res.json({ status: false, msg: "Unable to Add Record" });
   } catch (error) {
     next(error);
+  }
+};
+
+module.exports.GetExpense = async (req, res, next) => {
+  try {
+    const { userId } = req.body;
+    const data = await Expenses.find({
+      userId: {
+        $all: userId,
+      },
+    });
+    if (!data)
+      return res.json({ status: false, msg: "Failed to Fetch Expenses" });
+    return res.json({ status: true, msg: "Fetching your Expenses", data });
+  } catch (error) {
+    next(error);
+    return res.json({
+      status: false,
+      msg: "Cannot fetch expenses, Logout and Login again",
+    });
   }
 };

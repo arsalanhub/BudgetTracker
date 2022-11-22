@@ -3,18 +3,39 @@ import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
 import styles from "./BudgetDashboard.module.css";
 import { useNavigate } from "react-router-dom";
-
-const DUMMY_EXPENSES = [
-  { id: "e1", title: "Book", amount: 60, date: new Date(2022, 2, 24) },
-  { id: "e2", title: "Pencil", amount: 10, date: new Date(2022, 7, 12) },
-  { id: "e3", title: "Pizza", amount: 200, date: new Date(2022, 1, 1) },
-  { id: "e4", title: "Juice", amount: 30, date: new Date(2022, 4, 14) },
-];
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { GetExpenseURL } from "../urls";
 
 const BudgetDashboard = () => {
   const [username, setUsername] = useState("");
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [expenses, setExpenses] = useState();
   const navigate = useNavigate();
+
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+    closeButton: false,
+  };
+
+  const getData = async () => {
+    let userId = JSON.parse(localStorage.getItem("user"))._id;
+    let { data } = await axios.post(GetExpenseURL, {
+      userId,
+    });
+    if (data.status) {
+      toast.success(data.msg, toastOptions);
+      setExpenses(data.data);
+    } else toast.error(data.msg, toastOptions);
+  };
+
+  useEffect(() => {
+    getData();
+  }, [username]);
 
   useEffect(() => {
     let user = localStorage.getItem("user");
@@ -22,12 +43,6 @@ const BudgetDashboard = () => {
     user = JSON.parse(user);
     setUsername(user.username);
   }, []);
-
-  const addExpensehandler = (expense) => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
-  };
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
@@ -42,9 +57,10 @@ const BudgetDashboard = () => {
         </button>
       </nav>
       <div>
-        <NewExpense onAddExpense={addExpensehandler} />
-        <Expenses item={expenses} />
+        <NewExpense />
+        {expenses && <Expenses item={expenses} />}
       </div>
+      <ToastContainer />
     </>
   );
 };

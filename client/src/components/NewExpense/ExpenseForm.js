@@ -4,11 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AddExpenseURL } from "../../urls";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const navigate = useNavigate();
 
   const toastOptions = {
     position: "bottom-right",
@@ -46,9 +48,11 @@ const ExpenseForm = (props) => {
       amount: enteredAmount,
       date: enteredDate,
     });
-    if (data.status) toast.success(data.msg, toastOptions);
-    else toast.error(data.msg, toastOptions);
-    
+    if (data.status) {
+      toast.success(data.msg, toastOptions);
+      navigate("/dashboard");
+    } else toast.error(data.msg, toastOptions);
+
     setEnteredAmount("");
     setEnteredDate("");
     setEnteredTitle("");
