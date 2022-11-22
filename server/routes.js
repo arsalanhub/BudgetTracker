@@ -71,6 +71,8 @@ module.exports.GetExpense = async (req, res, next) => {
     });
     if (!data)
       return res.json({ status: false, msg: "Failed to Fetch Expenses" });
+    else if (data.length < 1)
+      return res.json({ status: false, msg: "No record found!!" });
     return res.json({ status: true, msg: "Fetching your Expenses", data });
   } catch (error) {
     next(error);

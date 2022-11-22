@@ -22,26 +22,23 @@ const BudgetDashboard = () => {
     closeButton: false,
   };
 
-  const getData = async () => {
-    let userId = JSON.parse(localStorage.getItem("user"))._id;
-    let { data } = await axios.post(GetExpenseURL, {
-      userId,
-    });
-    if (data.status) {
-      toast.success(data.msg, toastOptions);
-      setExpenses(data.data);
-    } else toast.error(data.msg, toastOptions);
-  };
-
-  useEffect(() => {
-    getData();
-  }, [username]);
-
   useEffect(() => {
     let user = localStorage.getItem("user");
     if (user == null) return navigate("/");
     user = JSON.parse(user);
     setUsername(user.username);
+
+    const getData = async () => {
+      let userId = JSON.parse(localStorage.getItem("user"))._id;
+      let { data } = await axios.post(GetExpenseURL, {
+        userId,
+      });
+      if (data.status) {
+        toast.success(data.msg, toastOptions);
+        setExpenses(data.data);
+      } else toast.error(data.msg, toastOptions);
+    };
+    getData();
   }, []);
 
   const logoutHandler = () => {
@@ -59,6 +56,7 @@ const BudgetDashboard = () => {
       <div>
         <NewExpense />
         {expenses && <Expenses item={expenses} />}
+        {!expenses && <Expenses item={[]} />}
       </div>
       <ToastContainer />
     </>
