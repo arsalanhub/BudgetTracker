@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AddExpenseURL } from "../../urls";
+import axios from "axios";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -29,23 +31,28 @@ const ExpenseForm = (props) => {
     setEnteredDate(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     if (enteredTitle === "" || enteredAmount === "" || enteredDate === "") {
       toast.error("Enter complete information of Expense", toastOptions);
       return;
     }
-    const expenseData = {
-      title: enteredTitle,
-      amount: +enteredAmount,
-      date: new Date(enteredDate),
-    };
 
-    props.onSaveExpenseData(expenseData);
+    let userId = JSON.parse(localStorage.getItem("user"))._id;
+    let { data } = await axios.post(AddExpenseURL, {
+      userId,
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: enteredDate,
+    });
+    if (data.status) toast.success(data.msg, toastOptions);
+    else toast.error(data.msg, toastOptions);
+    
     setEnteredAmount("");
     setEnteredDate("");
     setEnteredTitle("");
+    return;
   };
   return (
     <>
