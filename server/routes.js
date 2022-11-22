@@ -1,4 +1,5 @@
 const User = require("./model/userModel");
+const Expenses = require("./model/ExpenseModel");
 const bcrypt = require("bcrypt");
 
 module.exports.register = async (req, res, next) => {
@@ -38,6 +39,22 @@ module.exports.login = async (req, res, next) => {
 
     delete usernameCheck.password;
     return res.json({ status: true, user: usernameCheck });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.AddExpense = async (req, res, next) => {
+  try {
+    const { userId, title, amount, date } = req.body;
+    const expenses = await Expenses.create({
+      userId,
+      title,
+      amount,
+      date,
+    });
+    if (expenses) return res.json({ status: true, msg: "Record Added" });
+    else return res.json({ status: false, msg: "Unable to Add Record" });
   } catch (error) {
     next(error);
   }
