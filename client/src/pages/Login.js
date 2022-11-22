@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { loginURL } from "../urls";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
@@ -36,7 +37,7 @@ export default function Login() {
     event.preventDefault();
     if (validateForm()) {
       const { username, password } = values;
-      const { data } = await axios.post("loginRouteURL", {
+      const { data } = await axios.post(loginURL, {
         username,
         password,
       });
@@ -45,7 +46,7 @@ export default function Login() {
       }
       if (data.status === true) {
         await localStorage.setItem("chat-app-user", JSON.stringify(data.user));
-        navigate("/");
+        navigate("/dashboard");
       }
     }
   };
