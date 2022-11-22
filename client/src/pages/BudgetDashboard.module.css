@@ -1,0 +1,14 @@
+.navClass {
+  background-color: #3f3f3f;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+}
+.buttonClass {
+  cursor: pointer;
+  float: right;
+}

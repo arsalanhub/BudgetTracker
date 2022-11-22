@@ -45,7 +45,7 @@ export default function Login() {
         toast.error(data.msg, toastOptions);
       }
       if (data.status === true) {
-        await localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+        await localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/dashboard");
       }
     }
