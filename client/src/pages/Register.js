@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { registerURL } from "../urls";
 import axios from "axios";
 
 export default function Register() {
@@ -26,7 +27,7 @@ export default function Register() {
     event.preventDefault();
     if (handleValidation()) {
       const { password, username, email } = values;
-      const { data } = await axios.post("registerRouteURL", {
+      const { data } = await axios.post(registerURL, {
         username,
         email,
         password,
