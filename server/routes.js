@@ -105,3 +105,34 @@ module.exports.GetYear = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.FilterYear = async (req, res, next) => {
+  try {
+    let Year = req.body;
+    Year = Year.Year;
+    let stDate = `${Year}-01-01T00:00:00.000Z`;
+    let edDate = `${Year}-12-31T00:00:00.000Z`;
+    let data = await Expenses.aggregate([
+      {
+        $match: {
+          $and: [
+            {
+              date: {
+                $gte: new Date(stDate),
+              },
+            },
+            {
+              date: {
+                $lte: new Date(edDate),
+              },
+            },
+          ],
+        },
+      },
+    ]);
+    console.log(data);
+    res.json({ data });
+  } catch (error) {
+    next(error);
+  }
+};
