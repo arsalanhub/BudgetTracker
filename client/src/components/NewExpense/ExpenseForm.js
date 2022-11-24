@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AddExpenseURL } from "../../urls";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Expenses from "../Expenses/Expenses";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -50,7 +51,6 @@ const ExpenseForm = (props) => {
     });
     if (data.status) {
       toast.success(data.msg, toastOptions);
-      navigate("/dashboard");
     } else toast.error(data.msg, toastOptions);
 
     setEnteredAmount("");

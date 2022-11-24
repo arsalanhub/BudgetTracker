@@ -17,8 +17,10 @@ const ExpensesFilter = (props) => {
   }, []);
 
   const YearHandler = async (e) => {
+    let userId = JSON.parse(localStorage.getItem("user"))._id
     let { data } = await axios.post(filterYearURL, {
       Year: e.target.value,
+      userId
     });
     props.setListFun(data.data);
   };

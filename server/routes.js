@@ -108,8 +108,7 @@ module.exports.GetYear = async (req, res, next) => {
 
 module.exports.FilterYear = async (req, res, next) => {
   try {
-    let Year = req.body;
-    Year = Year.Year;
+    let { Year, userId } = req.body;
     let stDate = `${Year}-01-01T00:00:00.000Z`;
     let edDate = `${Year}-12-31T00:00:00.000Z`;
     let data = await Expenses.aggregate([
@@ -130,8 +129,12 @@ module.exports.FilterYear = async (req, res, next) => {
         },
       },
     ]);
-    console.log(data);
-    res.json({ data });
+
+    data = data.filter((ele) => {
+      console.log(ele);
+      return ele.userId == userId;
+    });
+    return res.json({ data });
   } catch (error) {
     next(error);
   }
