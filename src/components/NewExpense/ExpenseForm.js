@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ExpenseForm.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AddExpenseURL } from "../../urls";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Expenses from "../Expenses/Expenses";
+import { AppContext } from "../../context/Context";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-  const navigate = useNavigate();
+  const { getData } = useContext(AppContext);
 
   const toastOptions = {
     position: "bottom-right",
@@ -53,6 +52,7 @@ const ExpenseForm = (props) => {
       toast.success(data.msg, toastOptions);
     } else toast.error(data.msg, toastOptions);
 
+    getData();
     setEnteredAmount("");
     setEnteredDate("");
     setEnteredTitle("");

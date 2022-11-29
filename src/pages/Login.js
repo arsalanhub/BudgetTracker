@@ -8,7 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [values, setValues] = useState({ username: "", password: "" });
+  const [values, setValues] = useState({
+    username: "testing_account",
+    password: "123456789",
+  });
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -62,6 +65,7 @@ export default function Login() {
             type="text"
             placeholder="Username"
             name="username"
+            value={values.username}
             onChange={(e) => handleChange(e)}
             min="3"
           />
@@ -69,6 +73,7 @@ export default function Login() {
             type="password"
             placeholder="Password"
             name="password"
+            value={values.password}
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Log In</button>
