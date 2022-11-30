@@ -5,6 +5,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { loginURL } from "../urls";
 import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ export default function Login() {
     username: "testing_account",
     password: "123456789",
   });
+  const [loading, setLoading] = useState(false);
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -38,6 +41,7 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     if (validateForm()) {
       const { username, password } = values;
       const { data } = await axios.post(loginURL, {
@@ -56,6 +60,14 @@ export default function Login() {
 
   return (
     <>
+      {loading && (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">

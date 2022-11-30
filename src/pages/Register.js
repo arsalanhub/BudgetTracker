@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerURL } from "../urls";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -22,9 +24,11 @@ export default function Register() {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     if (handleValidation()) {
       const { password, username, email } = values;
       const { data } = await axios.post(registerURL, {
@@ -75,6 +79,14 @@ export default function Register() {
 
   return (
     <>
+      {loading && (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
