@@ -1,0 +1,121 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is API documentation for Budget Tracker Application",
+    "version": "1.0.0",
+    "title": "Budget Tracker API",
+    "contact": {
+      "email": "arsalanmohd237@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "schemes": ["http", "https"],
+  "host": "localhost:5000",
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Get signed in user information",
+        "description": "Get signed in user information",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Login object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/loginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/loginResponse"
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {        
+        "summary": "Get signed up user information",
+        "description": "Get signed up user information",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Signup object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/signupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/loginResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "loginRequest": {
+      "type": "array",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "signupRequest": {
+      "type": "array",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "loginResponse": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

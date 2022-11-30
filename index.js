@@ -10,6 +10,8 @@ const {
   FilterYear,
 } = require("./routes");
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 const app = express();
 
 mongoose
@@ -33,6 +35,7 @@ app.use("/AddExpense", AddExpense);
 app.use("/GetExpense", GetExpense);
 app.use("/GetYear", GetYear);
 app.use("/FilterYear", FilterYear);
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(5000, (req, res) => {
   console.log("Listening to port 5000");
