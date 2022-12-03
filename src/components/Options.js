@@ -15,7 +15,7 @@ import { AppContext } from "../context/Context";
 const options = ["Options", "Add Person", "Edit Person", "Logout"];
 
 export default function Options(props) {
-  const { setOpenModal } = useContext(AppContext);
+  const { setOpenModal, setTypeModal } = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -29,6 +29,7 @@ export default function Options(props) {
       props.logoutHandler();
       return;
     }
+    setTypeModal(options[index]);
     setOpenModal(true);
     setSelectedIndex(index);
     setOpen(false);
@@ -42,7 +43,7 @@ export default function Options(props) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-    props.logoutHandler();
+    // props.logoutHandler();
     setOpen(false);
   };
 
