@@ -12,7 +12,7 @@ import MenuList from "@mui/material/MenuList";
 import ModalComponent from "./ModalComponent";
 import { AppContext } from "../context/Context";
 
-const options = ["Select Options", "Add Person", "Edit Person", "Logout"];
+const options = ["Options", "Add Person", "Edit Person", "Logout"];
 
 export default function Options(props) {
   const { setOpenModal } = useContext(AppContext);
@@ -58,7 +58,7 @@ export default function Options(props) {
           onClick={handleClick}
           style={{ backgroundColor: "black", borderColor: "white" }}
         >
-          {options[selectedIndex]}
+          {options[0]}
         </Button>
         <Button
           size="small"
