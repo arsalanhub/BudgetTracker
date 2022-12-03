@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -8,10 +9,13 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
+import ModalComponent from "./ModalComponent";
+import { AppContext } from "../context/Context";
 
 const options = ["Select Options", "Add Person", "Edit Person", "Logout"];
 
 export default function Options(props) {
+  const { setOpenModal } = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -21,7 +25,11 @@ export default function Options(props) {
   };
 
   const handleMenuItemClick = (event, index) => {
-    if (index == 3) props.logoutHandler();
+    if (index == 3) {
+      props.logoutHandler();
+      return;
+    }
+    setOpenModal(true);
     setSelectedIndex(index);
     setOpen(false);
   };
@@ -34,7 +42,7 @@ export default function Options(props) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
+    props.logoutHandler();
     setOpen(false);
   };
 

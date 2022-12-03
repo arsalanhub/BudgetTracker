@@ -9,12 +9,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { GetExpenseURL } from "../urls";
 import { AppContext } from "../context/Context";
 import Options from "../components/Options";
+import ModalComponent from "../components/ModalComponent";
 
 const BudgetDashboard = () => {
   const [username, setUsername] = useState("");
-  const [expenses, setExpenses] = useState();
+  const [expenses, setExpenses] = useState();  
   const navigate = useNavigate();
-  const { getData } = useContext(AppContext);
+  const { getData, openModal } = useContext(AppContext);
 
   const toastOptions = {
     position: "bottom-right",
@@ -52,12 +53,15 @@ const BudgetDashboard = () => {
         {/* <button className={styles.buttonClass} onClick={logoutHandler}>
           Logout
         </button> */}
-        <Options logoutHandler={logoutHandler}/>
+        <Options
+          logoutHandler={logoutHandler}
+        />
       </nav>
       <div>
         <NewExpense />
         {expenses && <Expenses item={expenses} />}
         {!expenses && <Expenses item={[]} />}
+        {openModal && <ModalComponent />}
       </div>
       <ToastContainer />
     </>

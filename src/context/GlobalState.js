@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function GlobalState(props) {
   const [data, setData] = useState([]);
+  const [openModal, setOpenModal] = useState(false)
   const getData = async () => {
     let userId = JSON.parse(localStorage.getItem("user"))._id;
     let { data } = await axios.post(GetExpenseURL, {
@@ -15,7 +16,7 @@ export default function GlobalState(props) {
   };
 
   return (
-    <AppContext.Provider value={{ getData, data }}>
+    <AppContext.Provider value={{ getData, data, openModal, setOpenModal }}>
       {props.children}
     </AppContext.Provider>
   );
