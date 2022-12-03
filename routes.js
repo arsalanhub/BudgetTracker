@@ -1,5 +1,6 @@
 const User = require("./model/userModel");
 const Expenses = require("./model/ExpenseModel");
+const Persons = require("./model/PersonModel");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
@@ -30,13 +31,17 @@ module.exports.login = async (req, res, next) => {
     const { username, password } = req.body;
     const usernameCheck = await User.findOne({ username });
     if (!usernameCheck)
-      return res.status(404).json({ msg: "Username or Password incorrect", status: false });
+      return res
+        .status(404)
+        .json({ msg: "Username or Password incorrect", status: false });
     const passwordCheck = await bcrypt.compare(
       password,
       usernameCheck.password
     );
     if (!passwordCheck)
-      return res.status(404).json({ msg: "Username or Password incorrect", status: false });
+      return res
+        .status(404)
+        .json({ msg: "Username or Password incorrect", status: false });
 
     delete usernameCheck.password;
     // console.log(usernameCheck)
@@ -137,6 +142,36 @@ module.exports.FilterYear = async (req, res, next) => {
     });
     return res.json({ data });
   } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.AddPerson = async (req, res, next) => {
+  try {
+    let { name, phoneNumber, userId } = req.body;
+    let data = await Persons.create({
+      name,
+      phoneNumber,
+      userId,
+    });
+    return res.json({ msg: "Data Added", status: true });
+  } catch (error) {
+    res.json({ msg: error, status: false });
+    next(error);
+  }
+};
+
+module.exports.GetPerson = async (req, res, next) => {
+  try {
+    let { userId } = req.body;
+    let data = await Persons.find({
+      userId: {
+        $all: userId,
+      },
+    });
+    return res.json({ data, status: true });
+  } catch (error) {
+    res.json({ msg: "Error has occured", status: false });
     next(error);
   }
 };

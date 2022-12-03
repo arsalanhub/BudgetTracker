@@ -8,6 +8,8 @@ const {
   GetExpense,
   GetYear,
   FilterYear,
+  AddPerson,
+  GetPerson,
 } = require("./routes");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
@@ -35,6 +37,8 @@ app.use("/AddExpense", AddExpense);
 app.use("/GetExpense", GetExpense);
 app.use("/GetYear", GetYear);
 app.use("/FilterYear", FilterYear);
+app.use("/AddPerson", AddPerson);
+app.use("/GetPerson", GetPerson);
 app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(5000, (req, res) => {
