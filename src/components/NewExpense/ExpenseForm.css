@@ -21,6 +21,15 @@
   max-width: 100%;
 }
 
+.selectClass {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+}
+
 .new-expense__actions {
   text-align: right;
 }

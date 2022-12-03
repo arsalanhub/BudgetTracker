@@ -90,6 +90,20 @@ const ExpenseForm = (props) => {
               onChange={dateChangeHandler}
             />
           </div>
+          <div className="new-expense__control">
+            <label>Select Person</label>
+            <select className="selectClass">
+              <option>Person 1</option>
+              <option>Person 2</option>
+            </select>
+          </div>
+          <div className="new-expense__control">
+            <label>Select Payment Type</label>
+            <select className="selectClass">
+              <option>Given</option>
+              <option>Taken</option>
+            </select>
+          </div>
         </div>
         <div className="new-expense__actions">
           <button type="button" onClick={props.onCancel}>
