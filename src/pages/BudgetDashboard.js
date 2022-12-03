@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GetExpenseURL } from "../urls";
 import { AppContext } from "../context/Context";
+import Options from "../components/Options";
 
 const BudgetDashboard = () => {
   const [username, setUsername] = useState("");
@@ -48,9 +49,10 @@ const BudgetDashboard = () => {
     <>
       <nav className={styles.navClass}>
         <a>Welcome, {username}</a>
-        <button className={styles.buttonClass} onClick={logoutHandler}>
+        {/* <button className={styles.buttonClass} onClick={logoutHandler}>
           Logout
-        </button>
+        </button> */}
+        <Options logoutHandler={logoutHandler}/>
       </nav>
       <div>
         <NewExpense />
