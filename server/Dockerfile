@@ -1,5 +1,4 @@
-# Use the official Node.js 16 base image
-FROM node:18
+FROM node:16
 
 WORKDIR /usr/src/app
 COPY package*.json ./

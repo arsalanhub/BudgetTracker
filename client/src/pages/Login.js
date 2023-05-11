@@ -5,10 +5,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { loginURL } from "../urls";
 import "react-toastify/dist/ReactToastify.css";
+import CircularBackdrop from "../components/utils/CircularBackdrop";
 
 export default function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({ username: "", password: "" });
+  const [backdrop, setBackdrop] = useState(false);
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -34,6 +36,7 @@ export default function Login() {
   };
 
   const handleSubmit = async (event) => {
+    setBackdrop(true);
     event.preventDefault();
     if (validateForm()) {
       const { username, password } = values;
@@ -41,6 +44,7 @@ export default function Login() {
         username,
         password,
       });
+      setBackdrop(false);
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }
@@ -53,6 +57,7 @@ export default function Login() {
 
   return (
     <>
+      {backdrop && <CircularBackdrop />}
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">

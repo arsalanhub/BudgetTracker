@@ -11,6 +11,7 @@
 1. Make sure you have Nodejs installed.
 2. MongoDB is good to have but not mandatory.
 3. git bash if you are on windows.
+4. (Optional) For running inside container you need Docker Desktop with kubernates enabled
 
 ### Installation
 1. Clone the repo `git clone`
@@ -19,6 +20,12 @@
 4. Goto server directory and type `npm install`
 5. In the same directory run `npm start`
 6. Make sure you set environment variables where ever needed.
+
+### (Optinal) Running with container
+1. Navigate to server and client and build and push there respective images
+2. Navigate to ./infra/k8s and execute `kubectl apply -f .`
+3. Check for running pods `kubectl get pods`
+4. Do port-forwarding to navigate traffic for individual pods `kubectl port-forward pod/client-depl-7dbccbbf67-4mb9g 3000:3000`
 
 <!-- CONTACT -->
 ## Contact
