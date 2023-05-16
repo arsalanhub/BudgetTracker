@@ -21,6 +21,10 @@
 5. In the same directory run `npm start`
 6. Make sure you set environment variables where ever needed.
 
+### Requirements
+1. For running sh file you will need `git bash` if you are using windows
+2. Some sh files assume you have `nodejs`, `skkafold` and `kubernates` installed
+
 ### (Optinal) Running with container
 1. For running deployments & service navigate to `sh files` directory and run `run.sh` logs will get sotred in `run.txt` for debugging
 2. Use port forwarding by running `client-forwarding.sh` & `server-forwarding.sh` logs will get sotred in `port-forwarding.txt` for debugging
@@ -36,4 +40,4 @@ Mohammad Arsalan - [@_Arsalaan_](https://mobile.twitter.com/_arsalaan_) | arsala
 
 API is deployed here: https://budgettrackerapi.onrender.com/
 
-Complete application is deployed here: https://budgettracker-82722.web.app/ and https://budgettracker-82722.firebaseapp.com/
+Complete application is deployed here: https://budget-tracker-livid.vercel.app/
