@@ -22,10 +22,9 @@
 6. Make sure you set environment variables where ever needed.
 
 ### (Optinal) Running with container
-1. Navigate to server and client and build and push there respective images
-2. Navigate to ./infra/k8s and execute `kubectl apply -f .`
-3. Check for running pods `kubectl get pods`
-4. Do port-forwarding to navigate traffic for individual pods `kubectl port-forward pod/client-depl-7dbccbbf67-4mb9g 3000:3000`
+1. For running deployments & service navigate to `sh files` directory and run `run.sh` logs will get sotred in `run.txt` for debugging
+2. Use port forwarding by running `client-forwarding.sh` & `server-forwarding.sh` logs will get sotred in `port-forwarding.txt` for debugging
+3. Use `manager.sh` to get `logs`, `clean logs` & `stop servies & deployments`
 
 <!-- CONTACT -->
 ## Contact
