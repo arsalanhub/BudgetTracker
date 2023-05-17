@@ -1,15 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const {
-  login,
-  register,
-  AddExpense,
-  GetExpense,
-  GetYear,
-  FilterYear,
-} = require("./routes");
 const cors = require("cors");
+const { login, register } = require("./routes/user.routes");
+const { AddExpense, GetExpense } = require("./routes/expense.routes");
+const { GetYear } = require("./routes/routes");
 const app = express();
 
 mongoose
@@ -32,7 +27,6 @@ app.use("/register", register);
 app.use("/AddExpense", AddExpense);
 app.use("/GetExpense", GetExpense);
 app.use("/GetYear", GetYear);
-app.use("/FilterYear", FilterYear);
 
 app.listen(5000, (req, res) => {
   console.log("Listening to port 5000");
