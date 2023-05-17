@@ -1,4 +1,4 @@
-const Expenses = require("../model/ExpenseModel");
+const Expenses = require('../model/ExpenseModel');
 
 module.exports.GetYear = async (req, res, next) => {
   try {
@@ -6,7 +6,7 @@ module.exports.GetYear = async (req, res, next) => {
       {
         $project: {
           _id: 0,
-          Year: { $year: "$date" },
+          Year: { $year: '$date' },
         },
       },
     ]);

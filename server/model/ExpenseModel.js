@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const expenseSchema = new mongoose.Schema({
   userId: {
@@ -21,4 +21,4 @@ const expenseSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Expenses", expenseSchema);
+module.exports = mongoose.model('Expenses', expenseSchema);

@@ -1,10 +1,10 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const { login, register } = require("./routes/user.routes");
-const { AddExpense, GetExpense } = require("./routes/expense.routes");
-const { GetYear } = require("./routes/routes");
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const { login, register } = require('./routes/user.routes');
+const { AddExpense, GetExpense } = require('./routes/expense.routes');
+const { GetYear } = require('./routes/routes');
 const app = express();
 
 mongoose
@@ -13,7 +13,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Database Connected!!!");
+    console.log('Database Connected!!!');
   })
   .catch((error) => {
     console.log(error);
@@ -22,12 +22,12 @@ mongoose
 app.use(cors());
 app.use(express.json());
 
-app.use("/login", login);
-app.use("/register", register);
-app.use("/AddExpense", AddExpense);
-app.use("/GetExpense", GetExpense);
-app.use("/GetYear", GetYear);
+app.use('/login', login);
+app.use('/register', register);
+app.use('/AddExpense', AddExpense);
+app.use('/GetExpense', GetExpense);
+app.use('/GetYear', GetYear);
 
 app.listen(5000, (req, res) => {
-  console.log("Listening to port 5000");
+  console.log('Listening to port 5000');
 });
