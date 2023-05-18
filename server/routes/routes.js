@@ -1,23 +1,18 @@
+const { insert, inOrder } = require('../helper/avl-tree');
 const Expenses = require('../model/ExpenseModel');
 
 module.exports.GetYear = async (req, res, next) => {
   try {
-    const data = await Expenses.aggregate([
-      {
-        $project: {
-          _id: 0,
-          Year: { $year: '$date' },
-        },
-      },
-    ]);
-    const distinct_date = new Set();
-    let final_date = [];
-    for (let i = 0; i < data.length; i++) {
-      if (distinct_date.has(data[i].Year)) continue;
-      distinct_date.add(data[i].Year);
-      final_date.push(data[i].Year);
+    const data = await Expenses.find({});
+    let node = null;
+    const arr = new Array();
+    for(let i=0; i<data.length; i++) {
+      let date = data[i].date.toISOString().split('T')[0];
+      let year = date.split('-');
+      node = insert(node, parseInt(year[0]));
     }
-    return res.json({ final_date });
+    inOrder(arr, node);
+    return res.json({ data: arr });
   } catch (error) {
     next(error);
   }

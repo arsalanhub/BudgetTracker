@@ -2,7 +2,9 @@
 ## About The Project
 1. This is one stop solution for tracking all your expenses
 2. It has features such as Filtering record by year and adding new record
-3. Backend of this application is build in Node.js and MongoDB
+3. Backend of this application is build in `Node.js` and `MongoDB`
+4. `Shell scripts` are added to improve development speed while working with `k8s`
+5. `AVL Tree` is implemented for filtering and sorting data in `/GetYear` route
 
 <!-- GETTING STARTED -->
 ## Getting Started
