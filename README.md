@@ -6,6 +6,9 @@
 4. `Shell scripts` are added to improve development speed while working with `k8s`
 5. `AVL Tree` is implemented for filtering and sorting data in `/GetYear` route
 
+## Postman Collection
+<script src="https://www.postman.com/embed.js" data-postman-url="https://documenter.getpostman.com/view/10718983/2s93kz65JP"></script>
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
