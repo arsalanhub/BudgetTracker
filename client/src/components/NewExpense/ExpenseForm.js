@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import "./ExpenseForm.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { AddExpenseURL } from "../../urls";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Expenses from "../Expenses/Expenses";
+import React, { useState } from 'react';
+import './ExpenseForm.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AddExpenseURL } from '../../urls';
+import axios from 'axios';
 
 const ExpenseForm = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
-  const navigate = useNavigate();
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
 
   const toastOptions = {
-    position: "bottom-right",
+    position: 'bottom-right',
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: 'dark',
     closeButton: false,
   };
 
@@ -37,12 +34,12 @@ const ExpenseForm = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    if (enteredTitle === "" || enteredAmount === "" || enteredDate === "") {
-      toast.error("Enter complete information of Expense", toastOptions);
+    if (enteredTitle === '' || enteredAmount === '' || enteredDate === '') {
+      toast.error('Enter complete information of Expense', toastOptions);
       return;
     }
 
-    let userId = JSON.parse(localStorage.getItem("user"))._id;
+    let userId = JSON.parse(localStorage.getItem('user'))._id;
     let { data } = await axios.post(AddExpenseURL, {
       userId,
       title: enteredTitle,
@@ -53,9 +50,9 @@ const ExpenseForm = (props) => {
       toast.success(data.msg, toastOptions);
     } else toast.error(data.msg, toastOptions);
 
-    setEnteredAmount("");
-    setEnteredDate("");
-    setEnteredTitle("");
+    setEnteredAmount('');
+    setEnteredDate('');
+    setEnteredTitle('');
     return;
   };
   return (

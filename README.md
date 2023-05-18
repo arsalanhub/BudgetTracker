@@ -33,7 +33,7 @@
 3. Use `manager.sh` to get `logs`, `clean logs` & `stop servies & deployments`
 
 ### Dev Environment
-1. For formatting code `npm run pretty`. Currently it is only for server.
+1. For formatting code `npm run pretty`.
 
 <!-- CONTACT -->
 ## Contact

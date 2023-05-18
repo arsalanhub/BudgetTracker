@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { getYearURL, filterYearURL } from "../../urls";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { GetExpenseURL, getYearURL } from '../../urls';
+import axios from 'axios';
 
-import "./ExpensesFilter.css";
+import './ExpensesFilter.css';
 
 const ExpensesFilter = (props) => {
   const [AllOptions, setAllOptions] = useState([]);
 
   useEffect(() => {
     const fun = async () => {
-      let getYear = await axios.get(getYearURL);
-      let data = getYear.data.final_date;
-      setAllOptions(data);
+      let { data } = await axios.get(getYearURL);
+      setAllOptions(data.data);
     };
     fun();
   }, []);
 
   const YearHandler = async (e) => {
-    let userId = JSON.parse(localStorage.getItem("user"))._id
-    let { data } = await axios.post(filterYearURL, {
-      Year: e.target.value,
-      userId
+    let userId = JSON.parse(localStorage.getItem('user'))._id;
+    let { data } = await axios.post(`${GetExpenseURL}?Year=${e.target.value}`, {
+      userId,
     });
     props.setListFun(data.data);
   };

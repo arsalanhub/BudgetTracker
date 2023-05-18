@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import { useNavigate, Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import { loginURL } from "../urls";
-import "react-toastify/dist/ReactToastify.css";
-import CircularBackdrop from "../components/utils/CircularBackdrop";
+import React, { useState } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import { useNavigate, Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { loginURL } from '../urls';
+import 'react-toastify/dist/ReactToastify.css';
+import CircularBackdrop from '../components/utils/CircularBackdrop';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [values, setValues] = useState({ username: "", password: "" });
+  const [values, setValues] = useState({ username: '', password: '' });
   const [backdrop, setBackdrop] = useState(false);
   const toastOptions = {
-    position: "bottom-right",
+    position: 'bottom-right',
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: 'dark',
   };
 
   const handleChange = (event) => {
@@ -25,11 +25,11 @@ export default function Login() {
 
   const validateForm = () => {
     const { username, password } = values;
-    if (username === "") {
-      toast.error("Email and Password is required.", toastOptions);
+    if (username === '') {
+      toast.error('Email and Password is required.', toastOptions);
       return false;
-    } else if (password === "") {
-      toast.error("Email and Password is required.", toastOptions);
+    } else if (password === '') {
+      toast.error('Email and Password is required.', toastOptions);
       return false;
     }
     return true;
@@ -49,8 +49,8 @@ export default function Login() {
         toast.error(data.msg, toastOptions);
       }
       if (data.status === true) {
-        await localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/dashboard");
+        await localStorage.setItem('user', JSON.stringify(data.user));
+        navigate('/dashboard');
       }
     }
   };

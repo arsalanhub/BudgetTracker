@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { registerURL } from "../urls";
-import axios from "axios";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { registerURL } from '../urls';
+import axios from 'axios';
 
 export default function Register() {
   const navigate = useNavigate();
   const toastOptions = {
-    position: "bottom-right",
+    position: 'bottom-right',
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: 'dark',
   };
 
   const [values, setValues] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const handleSubmit = async (event) => {
@@ -36,8 +36,8 @@ export default function Register() {
         toast.error(data.msg, toastOptions);
       }
       if (data.status === true) {
-        await localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/dashboard");
+        await localStorage.setItem('user', JSON.stringify(data.user));
+        navigate('/dashboard');
       }
     }
   };
@@ -50,24 +50,24 @@ export default function Register() {
     const { username, email, password, confirmPassword } = values;
     if (password !== confirmPassword) {
       toast.error(
-        "Password and confirm password should be same.",
-        toastOptions
+        'Password and confirm password should be same.',
+        toastOptions,
       );
       return false;
     } else if (username.length < 3) {
       toast.error(
-        "Username should be greater than 3 characters.",
-        toastOptions
+        'Username should be greater than 3 characters.',
+        toastOptions,
       );
       return false;
     } else if (password.length < 8) {
       toast.error(
-        "Password should be equal or greater than 8 characters.",
-        toastOptions
+        'Password should be equal or greater than 8 characters.',
+        toastOptions,
       );
       return false;
-    } else if (email === "") {
-      toast.error("Email is required.", toastOptions);
+    } else if (email === '') {
+      toast.error('Email is required.', toastOptions);
       return false;
     }
     return true;
