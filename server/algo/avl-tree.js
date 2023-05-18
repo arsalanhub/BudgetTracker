@@ -5,7 +5,7 @@ class Node {
     this.left = null;
     this.right = null;
   }
-};
+}
 
 const newNode = (data) => {
   const new_node = new Node();
@@ -14,17 +14,17 @@ const newNode = (data) => {
   new_node.right = null;
   new_node.height = 1;
   return new_node;
-}
+};
 
 const height = (node) => {
   if (node === null) return 0;
   return node.height;
-}
+};
 
 const getBalance = (node) => {
   if (node === null) return 0;
   return height(node.left) - height(node.right);
-}
+};
 
 const rightRotate = (y) => {
   const x = y.left;
@@ -36,7 +36,7 @@ const rightRotate = (y) => {
   x.height = Math.max(height(x.left), height(x.right)) + 1;
 
   return x;
-}
+};
 
 const leftRotate = (x) => {
   const y = x.right;
@@ -48,7 +48,7 @@ const leftRotate = (x) => {
   y.height = Math.max(height(y.left), height(y.right)) + 1;
 
   return y;
-}
+};
 
 const insert = (node, key) => {
   if (node === null) return newNode(key);
@@ -70,18 +70,18 @@ const insert = (node, key) => {
   }
 
   return node;
-}
+};
 
 const inOrder = (arr, head) => {
-    if (head) {
-        inOrder(arr, head.left);
-        arr.push(head.data);
-        inOrder(arr, head.right);
-    }
-}
+  if (head) {
+    inOrder(arr, head.left);
+    arr.push(head.data);
+    inOrder(arr, head.right);
+  }
+};
 
 module.exports = {
-    insert, 
-    inOrder,
-    Node
-}
+  insert,
+  inOrder,
+  Node,
+};
