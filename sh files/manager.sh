@@ -8,7 +8,9 @@ while [[ "$userInput" != "exit" ]]; do
     echo "3. For all logs cleanup type: clean-logs"
     echo "4. For stopping all services type: stop-services"
     echo "5. For exiting type: exit"
-    echo "6. For clearing screen type: cls"
+    echo "6. Run server tests: server-tests"
+    echo "7. Pretty all: pretty-all"
+    echo "8. For clearing screen type: cls"
     echo ""
     read userInput
 
@@ -33,6 +35,7 @@ while [[ "$userInput" != "exit" ]]; do
         rm "../server-logs.txt"
         rm "../server-forwarding.txt"
         rm "../client-forwarding.txt"
+        rm "../server-tests.txt"
     elif [[ $userInput == "stop-services" ]]; then
         kubectl delete service react-app-srv
         kubectl delete service server-srv
@@ -46,6 +49,21 @@ while [[ "$userInput" != "exit" ]]; do
         rm "../server-logs.txt"
         rm "../server-forwarding.txt"
         rm "../client-forwarding.txt"
+        rm "../server-tests.txt"
+    elif [[ $userInput == "server-tests" ]]; then
+        cd ..
+        rm server-tests.txt
+        cd server
+        {
+           npm test
+        } 2>&1 | tee ../server-tests.txt    
+    elif [[ $userInput == "pretty-all" ]]; then
+        cd .. 
+        cd server
+        npm run pretty
+        cd ..
+        cd client
+        npm run pretty
     elif [[ $userInput == "cls" ]]; then
         clear
     fi

@@ -13,10 +13,10 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log('Database Connected!!!');
+    console.info('Database Connected!!!');
   })
   .catch((error) => {
-    console.log(error);
+    console.info(error);
   });
 
 app.use(cors());
@@ -28,6 +28,8 @@ app.use('/AddExpense', AddExpense);
 app.use('/GetExpense', GetExpense);
 app.use('/GetYear', GetYear);
 
-app.listen(5000, (req, res) => {
-  console.log('Listening to port 5000');
+const server = app.listen(5000, (req, res) => {
+  console.info('Listening to port 5000');
 });
+
+module.exports = { app, server };

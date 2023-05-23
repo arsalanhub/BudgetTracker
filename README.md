@@ -36,7 +36,8 @@
 3. Use `manager.sh` to get `logs`, `clean logs` & `stop servies & deployments`
 
 ### Dev Environment
-1. For formatting code `npm run pretty`.
+1. For formatting code `npm run pretty` or use `manager.sh` file and type `pretty-all`
+2. Run tests inside server using `npm test` or use `manager.sh` file and type `server-tests`
 
 <!-- CONTACT -->
 ## Contact
