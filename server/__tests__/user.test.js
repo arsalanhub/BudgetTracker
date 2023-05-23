@@ -4,7 +4,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { app, server } = require('../index');
 const User = require('../model/userModel');
-const { sampleData, correctData, correctUsername, correctPassword } = require('../utils/tests/user.mock');
+const {
+  sampleData,
+  correctData,
+  correctUsername,
+  correctPassword,
+} = require('../utils/tests/user.mock');
 
 const MONGODB_URI = process.env.DB_URL; // Update with your test database URL
 
@@ -61,14 +66,14 @@ describe('Register API', () => {
   });
 });
 
-describe("Login API", () => {
+describe('Login API', () => {
   it('should check login with correct credentials', async () => {
     var response = await request(app)
-      .post("/login")
+      .post('/login')
       .send(correctData)
       .expect('Content-Type', /json/)
       .expect(200);
-    
+
     expect(response.body.status).toBe(true);
     expect(response.body.user.username).toBeDefined();
     expect(response.body.user.email).toBeDefined();
@@ -77,23 +82,23 @@ describe("Login API", () => {
 
   it('should check login with correct username only', async () => {
     var response = await request(app)
-      .post("/login")
+      .post('/login')
       .send(correctUsername)
       .expect('Content-Type', /json/)
       .expect(200);
 
     expect(response.body.status).toBe(false);
     expect(response.body.msg).toBeDefined();
-  })
+  });
 
   it('should check login with correct password only', async () => {
     var response = await request(app)
-      .post("/login")
+      .post('/login')
       .send(correctPassword)
       .expect('Content-Type', /json/)
       .expect(200);
 
     expect(response.body.status).toBe(false);
     expect(response.body.msg).toBeDefined();
-  })
-})
+  });
+});

@@ -7,20 +7,12 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GetExpenseURL } from '../urls';
+import { toastOptions } from '../utils/common';
 
 const BudgetDashboard = () => {
   const [username, setUsername] = useState('');
   const [expenses, setExpenses] = useState();
   const navigate = useNavigate();
-
-  const toastOptions = {
-    position: 'bottom-right',
-    autoClose: 8000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: 'dark',
-    closeButton: false,
-  };
 
   useEffect(() => {
     let user = localStorage.getItem('user');

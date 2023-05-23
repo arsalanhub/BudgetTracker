@@ -6,18 +6,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import { loginURL } from '../urls';
 import 'react-toastify/dist/ReactToastify.css';
 import CircularBackdrop from '../components/utils/CircularBackdrop';
+import { toastOptions } from '../utils/common';
 
 export default function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({ username: '', password: '' });
   const [backdrop, setBackdrop] = useState(false);
-  const toastOptions = {
-    position: 'bottom-right',
-    autoClose: 8000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: 'dark',
-  };
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });

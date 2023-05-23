@@ -11,13 +11,13 @@ const correctData = {
 };
 
 const correctUsername = {
-    username: "testing@testing.com",
-    password: "wrong_password"
-}
+  username: 'testing@testing.com',
+  password: 'wrong_password',
+};
 
 const correctPassword = {
-    username: "wrong_username",
-    password: "testing@testing.com"
-}
+  username: 'wrong_username',
+  password: 'testing@testing.com',
+};
 
 module.exports = { sampleData, correctData, correctUsername, correctPassword };

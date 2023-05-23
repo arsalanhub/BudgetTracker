@@ -32,4 +32,4 @@ const server = app.listen(5000, (req, res) => {
   console.log('Listening to port 5000');
 });
 
-module.exports = { app, server }
+module.exports = { app, server };

@@ -4,20 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddExpenseURL } from '../../urls';
 import axios from 'axios';
+import { toastOptions } from '../../utils/common';
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
-
-  const toastOptions = {
-    position: 'bottom-right',
-    autoClose: 8000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: 'dark',
-    closeButton: false,
-  };
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
