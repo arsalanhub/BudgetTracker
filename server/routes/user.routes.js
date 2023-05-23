@@ -15,7 +15,7 @@ module.exports.register = async (req, res, next) => {
       email,
       username,
       password: hashedPassword,
-    });
+    }); 
     return res.json({ status: true, user });
   } catch (error) {
     next(error);
@@ -35,7 +35,6 @@ module.exports.login = async (req, res, next) => {
     if (!passwordCheck)
       return res.json({ msg: 'Username or Password incorrect', status: false });
 
-    delete usernameCheck.password;
     return res.json({ status: true, user: usernameCheck });
   } catch (error) {
     next(error);
